@@ -8,3 +8,7 @@ Volt::route('/', 'users.index');
 Route::get('/vista', function () {
   return view('vista');
 });
+
+Route::get('/index', function () {
+  return view('index');
+});
