@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -6,15 +6,14 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 }
 
-
-
 /**
-    The lines above are intact.
-    The lines below were added by maryUI installer.
+The lines above are intact.
+The lines below were added by maryUI installer.
 */
 
 /** daisyUI */
@@ -34,9 +33,14 @@
 */
 
 .mary-table-pagination span[aria-current="page"] > span {
-    @apply bg-primary text-base-100
+    @apply bg-primary text-base-100;
 }
 
 .mary-table-pagination button {
-    @apply cursor-pointer
+    @apply cursor-pointer;
+}
+
+:root {
+    --color-primary: #002f75;
+    --color-secondary: #fc671a;
 }

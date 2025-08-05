@@ -1,5 +1,5 @@
 <div>
-    <div class="bg-white shadow-md rounded-lg p-6">
+    <div class="bg-[var(--color-primary)] shadow-md rounded-lg p-6">
         <h2 class="text-xl font-semibold mb-4">{{ $title }}</h2>
         <p class="text-gray-700">{{ $slot }}</p>
         @if(isset($footer))
@@ -7,4 +7,4 @@
                 {{ $footer }}
             </div>
         @endif
-</div>
+    </div>
