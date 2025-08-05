@@ -1,5 +1,5 @@
 <x-layouts.layout>
-    <x-web-navbar></x-web-navbar>
+    <x-web-navbar />
     <main>
         <p>Contenido principal aquí.</p>
         <div class="grid grid-cols-3 gap-4">

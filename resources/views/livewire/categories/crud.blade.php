@@ -55,7 +55,7 @@ new class extends Component {
                         <x-slot:trigger>
                             <x-button label="Eliminar" icon="o-trash" class="btn-error" />
                         </x-slot:trigger>
-                        <x-menu-item label="Confirmar" wire:click="delete" />
+                        <x-menu-item title="Confirmar" wire:click="delete" />
                     </x-dropdown>
                 @endif
             </x-slot:actions>
