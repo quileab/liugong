@@ -23,6 +23,8 @@ class Product extends Model
         'max_load',
         'load_capacity',
         'dimensions',
+        'image',
+        'specs',
     ];
 
     public function category()

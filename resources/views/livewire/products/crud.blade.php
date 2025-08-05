@@ -5,9 +5,12 @@ use App\Models\Product;
 use App\Models\Category;
 use Mary\Traits\Toast;
 use Livewire\Attributes\Rule;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     use Toast;
+    use WithFileUploads;
 
     public Product $product;
 
@@ -24,7 +27,10 @@ new class extends Component {
     public $description;
 
     #[Rule('nullable|string')]
-    public $image;
+    public $image; // This will store the path to the image
+
+    #[Rule('nullable|image|max:1024')]
+    public $photo; // This will store the uploaded file
 
     #[Rule('nullable|string')]
     public $specs;
@@ -39,6 +45,7 @@ new class extends Component {
             $this->fill($this->product);
         } else {
             $this->product = new Product();
+            $this->category_id = null;
         }
     }
 
@@ -46,9 +53,17 @@ new class extends Component {
     {
         $data = $this->validate();
 
+        if ($this->photo) {
+            $data['image'] = $this->photo->store('products', 'public');
+        } else if ($this->product->exists && $this->product->image) {
+            // If no new photo is uploaded, but an image already exists for the product,
+            // ensure it's included in the data to be saved.
+            $data['image'] = $this->product->image;
+        }
+
         Product::updateOrCreate(['id' => $this->product->id], $data);
 
-        $this->toast(type: 'success', title: 'Product saved successfully!');
+        $this->toast(type: 'success', title: 'Producto guardado exitosamente!');
         $this->redirect('/products', navigate: true);
     }
 
@@ -80,7 +95,13 @@ new class extends Component {
                 <x-input label="Nombre" wire:model="name" />
                 <x-input label="Precio" wire:model="price" type="number" step="0.01" />
                 <x-input label="Cantidad en Stock" wire:model="stock_quantity" type="number" />
-                <x-input label="Imagen" wire:model="image" />
+
+                <div class="col-span-2">
+                    <x-file label="Imagen del Producto" wire:model="photo" accept="image/*">
+                        <img src="{{ $image ? asset('storage/' . $image) : asset('images/placeholder.jpg') }}" class="h-40 rounded-lg" />
+                    </x-file>
+                </div>
+
                 <x-textarea label="Descripción" wire:model="description" rows="5" class="col-span-2" />
                 <x-textarea label="Especificaciones" wire:model="specs" rows="5" class="col-span-2" />
             </div>
