@@ -1,18 +1,43 @@
 <x-layouts.layout>
     <x-web-navbar />
+{{-- carousel start --}}
+@php
+    $slides = [
+        [
+            'image' => '/photos/photo-1559703248-dcaaec9fab78.jpg',
+            'title' => 'Frontend developers',
+            'description' => 'We love last week frameworks.',
+            'url' => '/docs/installation',
+            'urlText' => 'Get started',
+        ],
+        [
+            'image' => '/photos/photo-1565098772267-60af42b81ef2.jpg',
+            'title' => 'Full stack developers',
+            'description' => 'Where burnout is just a fancy term for Tuesday.',
+        ],
+        [
+            'image' => '/photos/photo-1494253109108-2e30c049369b.jpg',
+            'url' => '/docs/installation',
+            'urlText' => 'Let`s go!',
+        ],
+        [
+            'image' => '/photos/photo-1572635148818-ef6fd45eb394.jpg',
+            'url' => '/docs/installation',
+        ],
+    ];
+@endphp
+ 
+<x-carousel :slides="$slides" />
+
+{{-- carousel end --}}
     <main>
-        <p>Contenido principal aquí.</p>
-        <div class="grid grid-cols-3 gap-4">
-        <x-web-card title="Mi Tarjeta">
-            Contenido de la tarjeta.
-        </x-web-card>
-        <x-web-card title="Otra Tarjeta" footer="Pie de página de la tarjeta">
-            Más contenido de la tarjeta.
-        </x-web-card>
-        <x-web-card title="Tarjeta con Botón">
-            Contenido de la tarjeta con un botón.
-            <x-button>Haz clic aquí</x-button>
-        </x-web-card>
+        <div class="bg-gray-100 py-8 px-4 grid grid-cols-1 gap-12 md:grid-cols-3">
+        @foreach($products as $product)
+            <x-web-card :title="$product->name">
+                <img src="{{ $product->image }}" alt="{{ $product->name }}" class="w-full h-auto aspect-video object-contain">
+                {{ $product->description }}
+            </x-web-card>
+        @endforeach
         </div>
     </main>
    <x-web-footer />

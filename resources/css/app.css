@@ -44,3 +44,19 @@ The lines below were added by maryUI installer.
     --color-primary: #002f75;
     --color-secondary: #fc671a;
 }
+
+.aspect-video {
+    aspect-ratio: 16 / 9;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+/* From Uiverse.io by adamgiebl */ 
+.inno-card {
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+               -15px -15px 30px #ffffff;
+  }

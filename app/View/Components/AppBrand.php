@@ -25,12 +25,7 @@ class AppBrand extends Component
                 <a href="/" wire:navigate>
                     <!-- Hidden when collapsed -->
                     <div {{ $attributes->class(["hidden-when-collapsed"]) }}>
-                        <div class="flex items-center gap-2 w-fit">
-                            <x-icon name="o-cube" class="w-6 -mb-1.5 text-orange-400" />
-                            <span class="font-bold text-3xl me-3 bg-gradient-to-r from-blue-900 via-blue-900 to-orange-400 bg-clip-text text-transparent ">
-                                {{ config('app.name') }}
-                            </span>
-                        </div>
+                        <img src="{{ asset('images/Logo-LiuGong.svg') }}" alt="Logo LiuGong" class="h-10" />
                     </div>
 
                     <!-- Display when collapsed -->
