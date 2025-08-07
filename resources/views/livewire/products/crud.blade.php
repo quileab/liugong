@@ -38,6 +38,12 @@ new class extends Component {
     #[Rule('required|integer|min:0')]
     public $stock_quantity;
 
+    #[Rule('required|boolean')]
+    public $visible = true;
+
+    #[Rule('required|boolean')]
+    public $featured = false;
+
     public function mount($id = null): void
     {
         if ($id) {
@@ -95,6 +101,8 @@ new class extends Component {
                 <x-input label="Nombre" wire:model="name" />
                 <x-input label="Precio" wire:model="price" type="number" step="0.01" />
                 <x-input label="Cantidad en Stock" wire:model="stock_quantity" type="number" />
+                <x-toggle label="Visible" wire:model="visible" />
+                <x-toggle label="Destacado" wire:model="featured" />
 
                 <div class="col-span-2">
                     <x-file label="Imagen del Producto" wire:model="photo" accept="image/*">

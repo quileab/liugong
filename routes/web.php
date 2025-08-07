@@ -18,6 +18,5 @@ Route::get('/vista', function () {
 });
 
 Route::get('/', function () {
-    $products = \App\Models\Product::all();
-    return view('index', ['products' => $products]);
+    return view('index');
 });

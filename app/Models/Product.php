@@ -9,6 +9,11 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'visible' => 'boolean',
+        'featured' => 'boolean',
+    ];
+
     protected $fillable = [
         'category_id',
         'name',
@@ -25,6 +30,8 @@ class Product extends Model
         'dimensions',
         'image',
         'specs',
+        'visible',
+        'featured',
     ];
 
     public function category()

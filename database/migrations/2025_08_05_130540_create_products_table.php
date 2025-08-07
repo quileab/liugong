@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('specs')->nullable();
             $table->unsignedInteger('stock_quantity')->default(0);
+            $table->boolean('visible')->default(true);
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
     }
