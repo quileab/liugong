@@ -21,21 +21,21 @@ class WebNavbar extends Component
                 'url' => '/'
             ],
             [
-                'name' => 'nosotros',
+                'name' => 'Nosotros',
                 'url' => '/about'
             ],
             [
                 'name' => 'Contactos',
                 'url' => '/contact'
             ],
-            [
-                'name' => 'Services',
-                'url' => '/services'
-            ],
-            [
-                'name' => 'Blog',
-                'url' => '/blog'
-            ]
+            // [
+            //     'name' => 'Services',
+            //     'url' => '/services'
+            // ],
+            // [
+            //     'name' => 'Blog',
+            //     'url' => '/blog'
+            // ]
         ];
     }
 

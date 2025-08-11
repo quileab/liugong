@@ -22,7 +22,7 @@
             <x-app-brand />
           </div>
           <div class="hidden sm:ml-6 sm:block">
-            <div class="flex space-x-4">
+            <div class="flex space-x-4 items-center">
               @foreach($menus as $menu)
               <a href="{{ $menu['url'] }}" class="text-[var(--color-primary)] px-3 py-6 text-sm font-medium hover:bg-[var(--color-secondary)] hover:text-white">{{ $menu['name'] }}</a>
               @endforeach
