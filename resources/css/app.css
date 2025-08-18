@@ -60,3 +60,7 @@ The lines below were added by maryUI installer.
     box-shadow: 15px 15px 30px #bebebe,
                -15px -15px 30px #ffffff;
   }
+
+pre {
+    font-family: var(--font-sans);
+}

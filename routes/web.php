@@ -30,3 +30,5 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+Route::get('/product/{product}', \App\Livewire\ProductDetail::class)->name('product.detail');
