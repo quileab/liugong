@@ -17,12 +17,16 @@ class WebNavbar extends Component
     {
         $this->menus = [
             [
-                'name' => 'Home',
+                'name' => 'Acuña',
                 'url' => '/'
             ],
             [
-                'name' => 'Nosotros',
+                'name' => 'LiuGong',
                 'url' => '/about'
+            ],
+            [
+                'name' => 'Usados',
+                'url' => '/used'
             ],
             [
                 'name' => 'Contactos',

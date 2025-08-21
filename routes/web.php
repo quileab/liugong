@@ -13,6 +13,10 @@ Route::middleware('auth')->group(function () {
     Volt::route('/products', 'products.index');
     Volt::route('/products/create', 'products.crud');
     Volt::route('/products/{id}/edit', 'products.crud');
+
+    Volt::route('/posts', 'posts.index');
+    Volt::route('/posts/create', 'posts.crud');
+    Volt::route('/posts/{id}/edit', 'posts.crud');
 });
 // Ruta que retorna la vista "vista" sin controlador
 Route::get('/vista', function () {
@@ -32,3 +36,37 @@ Route::get('/contact', function () {
 });
 
 Route::get('/product/{product}', \App\Livewire\ProductDetail::class)->name('product.detail');
+
+Route::get('/clear/{option?}', function ($option = null) {
+    $logs = [];
+    // if option is 'prod' then run composer install --optimize-autoloader --no-dev
+    if ($option == 'prod') {
+        $logs['Composer Install for PROD'] = Artisan::call('composer install --optimize-autoloader --no-dev');
+    }
+
+    $maintenance = ($option == "cache") ? [
+        'Flush' => 'cache:flush',
+    ] : [
+        //'DebugBar'=>'debugbar:clear',
+        'Storage Link' => 'storage:link',
+        'Config' => 'config:clear',
+        'Optimize Clear' => 'optimize:clear',
+        'Optimize' => 'optimize',
+        'Route Clear' => 'route:clear',
+        'Route Cache' => 'route:cache',
+        'View Clear' => 'view:clear',
+        'View Cache' => 'view:cache',
+        'Cache Clear' => 'cache:clear',
+        'Cache Config' => 'config:cache',
+    ];
+
+    foreach ($maintenance as $key => $value) {
+        try {
+            Artisan::call($value);
+            $logs[$key] = '✔️';
+        } catch (\Exception $e) {
+            $logs[$key] = '❌' . $e->getMessage();
+        }
+    }
+    return "<pre>" . print_r($logs, true) . "</pre><hr />";
+});

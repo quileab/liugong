@@ -54,6 +54,7 @@
                 <x-menu-item title="Inicio" icon="o-sparkles" link="/" />
                 <x-menu-item title="Categorías" icon="o-tag" link="/categories" />
                 <x-menu-item title="Productos" icon="o-cube" link="/products" />
+                <x-menu-item title="Posts" icon="o-document-text" link="/posts" />
 
                 <x-menu-sub title="Ajustes" icon="o-cog-6-tooth">
                     <x-menu-item title="Wifi" icon="o-wifi" link="####" />
