@@ -2,10 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 //Volt::route('/', 'users.index');
-Volt::route('/login', 'login')->name('login');
+//Volt::route('/login', 'login')->name('login');
+
+Route::get('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/');
+})->name('logout');
+require __DIR__ . '/auth.php';
 Route::middleware('auth')->group(function () {
+    Volt::route('/dashboard', 'dashboard')->name('dashboard');
+    Volt::route('/profile', 'profile')->name('profile');
     Volt::route('/categories', 'categories.index');
     Volt::route('/categories/create', 'categories.crud');
     Volt::route('/categories/{id}/edit', 'categories.crud');
@@ -25,7 +37,7 @@ Route::get('/vista', function () {
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 
 Route::get('/about', function () {
     return view('about');

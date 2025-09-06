@@ -52,6 +52,8 @@
                 @endif
 
                 <x-menu-item title="Inicio" icon="o-sparkles" link="/" />
+                <x-menu-item title="Dashboard" icon="o-chart-bar-square" link="/dashboard" />
+
                 <x-menu-item title="Categorías" icon="o-tag" link="/categories" />
                 <x-menu-item title="Productos" icon="o-cube" link="/products" />
                 <x-menu-item title="Posts" icon="o-document-text" link="/posts" />
