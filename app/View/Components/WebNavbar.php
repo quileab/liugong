@@ -32,6 +32,7 @@ class WebNavbar extends Component
                 'name' => 'Contactos',
                 'url' => '/contact'
             ],
+            
             // [
             //     'name' => 'Services',
             //     'url' => '/services'
