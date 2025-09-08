@@ -58,6 +58,7 @@
                 <x-menu-item title="Productos" icon="o-cube" link="/products" />
                 <x-menu-item title="Posts" icon="o-document-text" link="/posts" />
                 <x-menu-item title="Carousel" icon="o-photo" link="/carousel" />
+                <x-menu-item title="Contacts" icon="o-envelope" link="/contacts" />
 
                 <x-menu-sub title="Ajustes" icon="o-cog-6-tooth">
                     <x-menu-item title="Wifi" icon="o-wifi" link="####" />

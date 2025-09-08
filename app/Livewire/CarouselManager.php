@@ -25,6 +25,10 @@ class CarouselManager extends Component
     {
         $this->isEdit = false;
         $this->reset(['image_path', 'title', 'description', 'url', 'url_text', 'order', 'slide_id', 'image']);
+
+        $maxOrder = Carousel::max('order');
+        $this->order = $maxOrder ? $maxOrder + 1 : 1;
+
         $this->showModal = true;
     }
 

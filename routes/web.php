@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Volt::route('/posts/{id}/edit', 'posts.crud');
 
     Route::get('/carousel', \App\Livewire\CarouselManager::class)->name('carousel.manager');
+    Route::get('/contacts', \App\Livewire\ContactManager::class)->name('contacts.manager');
 });
 // Ruta que retorna la vista "vista" sin controlador
 Route::get('/vista', function () {
