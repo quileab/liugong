@@ -13,17 +13,17 @@ new class extends Component {
             'posts' => Post::paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#'],
-                ['key' => 'title', 'label' => 'Title'],
-                ['key' => 'published_at', 'label' => 'Published At'],
+                ['key' => 'title', 'label' => 'Título'],
+                ['key' => 'published_at', 'label' => 'Fecha de publicación'],
             ]
         ];
     }
 }; ?>
 
 <div>
-    <x-header title="Posts" separator>
+    <x-header title="Noticias" separator>
         <x-slot:actions>
-            <x-button label="ADD" link="/posts/create" icon="o-plus" class="btn-primary" />
+            <x-button label="Agregar" link="/posts/create" icon="o-plus" class="btn-primary" />
         </x-slot:actions>
     </x-header>
 

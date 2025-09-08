@@ -52,7 +52,7 @@ new class extends Component {
 
         Post::updateOrCreate(['id' => $this->post->id], $data);
 
-        $this->toast(type: 'success', title: 'Post saved successfully!');
+        $this->toast(type: 'success', title: '¡Publicación guardada con éxito!');
         $this->redirect('/posts', navigate: true);
     }
 
@@ -60,38 +60,38 @@ new class extends Component {
     {
         if ($this->post->id) {
             $this->post->delete();
-            $this->toast(type: 'success', title: 'Post deleted successfully!');
+            $this->toast(type: 'success', title: '¡Publicación eliminada con éxito!');
             $this->redirect('/posts', navigate: true);
         }
     }
 }; ?>
 
 <div>
-    <x-header :title="$post->id ? 'Edit Post' : 'Create Post'" separator />
+    <x-header :title="$post->id ? 'Editar Publicación' : 'Crear Publicación'" separator />
 
     <x-card>
         <x-form wire:submit.prevent="save">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <x-input label="Title" wire:model="title" />
-                <x-input type="date" label="Published At" wire:model="published_at" />
+                <x-input label="Título" wire:model="title" />
+                <x-input type="date" label="Fecha de publicación" wire:model="published_at" />
 
                 <div class="col-span-2">
-                    <x-file label="Image" wire:model="photo" accept="image/*">
+                    <x-file label="Imagen" wire:model="photo" accept="image/*">
                         <img src="{{ $image_path ? (Str::startsWith($image_path, 'http') ? $image_path : asset('storage/' . $image_path)) : asset('images/placeholder.jpg') }}" class="h-40 rounded-lg" />
                     </x-file>
                 </div>
 
-                <x-textarea label="Content" wire:model="content" rows="5" class="col-span-2" />
+                <x-textarea label="Contenido" wire:model="content" rows="5" class="col-span-2" />
             </div>
             <x-slot:actions>
-                <x-button label="Cancel" link="/posts" />
-                <x-button label="Save" type="submit" icon="o-check" class="btn-primary" />
+                <x-button label="Cancelar" link="/posts" />
+                <x-button label="Guardar" type="submit" icon="o-check" class="btn-primary" />
                 @if($post->id)
                     <x-dropdown>
                         <x-slot:trigger>
-                            <x-button label="Delete" icon="o-trash" class="btn-error" />
+                            <x-button label="Eliminar" icon="o-trash" class="btn-error" />
                         </x-slot:trigger>
-                        <x-menu-item title="Confirm" wire:click="delete" />
+                        <x-menu-item title="Confirmar" wire:click="delete" />
                     </x-dropdown>
                 @endif
             </x-slot:actions>
