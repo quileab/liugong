@@ -15,14 +15,18 @@ class WebNavbar extends Component
      */
     public function __construct()
     {
-        $this->menus = [
+                $this->menus = [
             [
                 'name' => 'Acuña',
-                'url' => '/'
+                'url' => '/',
+                'image' => true,
+                'logo' => 'logo_acuna'
             ],
             [
                 'name' => 'LiuGong',
-                'url' => '/about'
+                'url' => '/about',
+                'image' => true,
+                'logo' => 'logo_liugong'
             ],
             [
                 'name' => 'Usados',

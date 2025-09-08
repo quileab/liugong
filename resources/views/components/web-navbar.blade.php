@@ -26,15 +26,25 @@
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4 items-center">
-              @foreach($menus as $menu)
-                @if(isset($menu['auth']) && $menu['auth'])
-                  @auth
+                            @foreach($menus as $menu)
+                @if(isset($menu['image']) && $menu['image'])
+                  <a href="{{ $menu['url'] }}">
+                    @if($menu['logo'] === 'logo_acuna')
+                      <img src="{{ asset('images/SVG/logo-acuna.svg') }}" alt="{{ $menu['name'] }}" class="h-10">
+                    @elseif($menu['logo'] === 'logo_liugong')
+                      <img src="{{ asset('images/SVG/Logo-LiuGong.svg') }}" alt="{{ $menu['name'] }}" class="h-10">
+                    @endif
+                  </a>
+                @else
+                  @if(isset($menu['auth']) && $menu['auth'])
+                    @auth
+                      <a href="{{ $menu['url'] }}"
+                        class="text-[var(--color-primary)] px-3 py-6 text-sm font-medium hover:bg-[var(--color-secondary)] hover:text-white">{{ $menu['name'] }}</a>
+                    @endauth
+                  @else
                     <a href="{{ $menu['url'] }}"
                       class="text-[var(--color-primary)] px-3 py-6 text-sm font-medium hover:bg-[var(--color-secondary)] hover:text-white">{{ $menu['name'] }}</a>
-                  @endauth
-                @else
-                  <a href="{{ $menu['url'] }}"
-                    class="text-[var(--color-primary)] px-3 py-6 text-sm font-medium hover:bg-[var(--color-secondary)] hover:text-white">{{ $menu['name'] }}</a>
+                  @endif
                 @endif
               @endforeach
 

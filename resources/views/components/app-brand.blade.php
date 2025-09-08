@@ -2,7 +2,7 @@
 <a href="/" wire:navigate>
     <!-- Hidden when collapsed -->
     <div {{ $attributes->class(["hidden-when-collapsed"]) }}>
-        <img src="{{ asset('images/Logo-LiuGong.svg') }}" alt="Logo LiuGong" class="h-10" />
+        <img src="{{ asset('images/SVG/Logo-LiuGong.svg') }}" alt="Logo LiuGong" class="h-10" />
     </div>
 
     <!-- Display when collapsed -->
