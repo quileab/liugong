@@ -8,43 +8,31 @@ use Illuminate\View\Component;
 
 class WebNavbar extends Component
 {
-    public array $menus;
-
+    public array $links = [];
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-                $this->menus = [
+        $this->links = [
             [
-                'name' => 'Acuña',
+                'label' => 'Acuña Maquinarias',
                 'url' => '/',
-                'image' => true,
-                'logo' => 'logo_acuna'
+                'logo_url' => 'images/SVG/logo-acuna.svg'
             ],
             [
-                'name' => 'LiuGong',
+                'label' => 'LiuGong',
+                'url' => '/products',
+                'logo_url' => 'images/SVG/Logo-LiuGong.svg'
+            ],
+            [
+                'label' => 'Nosotros',
                 'url' => '/about',
-                'image' => true,
-                'logo' => 'logo_liugong'
             ],
             [
-                'name' => 'Usados',
-                'url' => '/used'
-            ],
-            [
-                'name' => 'Contactos',
-                'url' => '/contact'
-            ],
-            
-            // [
-            //     'name' => 'Services',
-            //     'url' => '/services'
-            // ],
-            // [
-            //     'name' => 'Blog',
-            //     'url' => '/blog'
-            // ]
+                'label' => 'Contacto',
+                'url' => '/contact',
+            ]
         ];
     }
 
@@ -53,6 +41,8 @@ class WebNavbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.web-navbar');
+        return view('components.web-navbar', [
+            'links' => $this->links,
+        ]);
     }
 }

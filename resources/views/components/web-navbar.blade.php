@@ -26,24 +26,21 @@
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4 items-center">
-                            @foreach($menus as $menu)
-                @if(isset($menu['image']) && $menu['image'])
-                  <a href="{{ $menu['url'] }}">
-                    @if($menu['logo'] === 'logo_acuna')
-                      <img src="{{ asset('images/SVG/logo-acuna.svg') }}" alt="{{ $menu['name'] }}" class="h-10">
-                    @elseif($menu['logo'] === 'logo_liugong')
-                      <img src="{{ asset('images/SVG/Logo-LiuGong.svg') }}" alt="{{ $menu['name'] }}" class="h-10">
-                    @endif
+              @foreach($links as $link)
+                @if(isset($link['logo_url']))
+                  <a href="{{ $link['url'] }}"
+                    class="text-[var(--color-primary)] px-3 py-6 hover:bg-[var(--color-secondary)] hover:text-white">
+                    {!! inline_svg($link['logo_url'], 'h-4') !!}
                   </a>
                 @else
-                  @if(isset($menu['auth']) && $menu['auth'])
+                  @if(isset($link['auth']) && $link['auth'])
                     @auth
-                      <a href="{{ $menu['url'] }}"
-                        class="text-[var(--color-primary)] px-3 py-6 text-sm font-medium hover:bg-[var(--color-secondary)] hover:text-white">{{ $menu['name'] }}</a>
+                      <a href="{{ $link['url'] }}"
+                        class="text-[var(--color-primary)] px-3 py-6 text-sm font-medium hover:bg-[var(--color-secondary)] hover:text-white">{{ $link['label'] }}</a>
                     @endauth
                   @else
-                    <a href="{{ $menu['url'] }}"
-                      class="text-[var(--color-primary)] px-3 py-6 text-sm font-medium hover:bg-[var(--color-secondary)] hover:text-white">{{ $menu['name'] }}</a>
+                    <a href="{{ $link['url'] }}"
+                      class="text-[var(--color-primary)] px-3 py-6 text-sm font-medium hover:bg-[var(--color-secondary)] hover:text-white">{{ $link['label'] }}</a>
                   @endif
                 @endif
               @endforeach
@@ -61,7 +58,8 @@
             </a>
           @else
             <a href="/login">
-            <x-icon name="o-user-circle" class="w-8 h-8 text-[var(--color-primary)] hover:text-[var(--color-secondary)] p-1 rounded-full" />
+              <x-icon name="o-user-circle"
+                class="w-8 h-8 text-[var(--color-primary)] hover:text-[var(--color-secondary)] p-1 rounded-full" />
             </a>
           @endauth
         </div>

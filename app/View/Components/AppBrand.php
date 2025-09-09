@@ -25,7 +25,7 @@ class AppBrand extends Component
                 <a href="/" wire:navigate>
                     <!-- Hidden when collapsed -->
                     <div {{ $attributes->class(["hidden-when-collapsed"]) }}>
-                        <img src="{{ asset('images/Logo-LiuGong.svg') }}" alt="Logo LiuGong" class="h-10" />
+                        {!! inline_svg('images/SVG/logo-acuna.svg', 'h-10 text-red-700') !!}
                     </div>
 
                     <!-- Display when collapsed -->
