@@ -50,7 +50,10 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/products-web', \App\Livewire\ProductWebList::class)->name('products.web');
+
 Route::get('/product/{product}', \App\Livewire\ProductDetail::class)->name('product.detail');
+Route::get('/post/{post}', \App\Livewire\PostDetail::class)->name('post.detail');
 
 Route::get('/clear/{option?}', function ($option = null) {
     $logs = [];

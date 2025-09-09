@@ -15,19 +15,15 @@ class WebNavbar extends Component
     public function __construct()
     {
         $this->links = [
-            [
-                'label' => 'Acuña Maquinarias',
-                'url' => '/',
-                'logo_url' => 'images/SVG/logo-acuna.svg'
-            ],
+            // [
+            //     'label' => 'Acuña Maquinarias',
+            //     'url' => '/',
+            //     'logo_url' => 'images/SVG/logo-acuna.svg'
+            // ],
             [
                 'label' => 'LiuGong',
-                'url' => '/products',
+                'url' => route('products.web'),
                 'logo_url' => 'images/SVG/Logo-LiuGong.svg'
-            ],
-            [
-                'label' => 'Nosotros',
-                'url' => '/about',
             ],
             [
                 'label' => 'Contacto',
