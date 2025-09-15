@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedInteger('stock_quantity')->default(0);
             $table->boolean('visible')->default(true);
             $table->boolean('featured')->default(false);
+            $table->boolean('new')->default(true);
             $table->timestamps();
         });
     }
