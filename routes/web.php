@@ -50,7 +50,14 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+
+Route::get('/products/type/{type}', function ($type) {
+    session(['product_type' => $type]);
+    return redirect()->route('products.web');
+})->name('products.set_type');
+
 Route::get('/products-web', \App\Livewire\ProductWebList::class)->name('products.web');
+
 
 Route::get('/product/{product}', \App\Livewire\ProductDetail::class)->name('product.detail');
 Route::get('/post/{post}', \App\Livewire\PostDetail::class)->name('post.detail');

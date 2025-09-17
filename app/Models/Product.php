@@ -12,6 +12,7 @@ class Product extends Model
     protected $casts = [
         'visible' => 'boolean',
         'featured' => 'boolean',
+        'new' => 'boolean',
     ];
 
     protected $fillable = [
@@ -32,6 +33,7 @@ class Product extends Model
         'specs',
         'visible',
         'featured',
+        'new',
     ];
 
     public function category()

@@ -25,6 +25,8 @@ class ProductWebList extends Component
 
     public function render()
     {
+        $productType = session('product_type', 1); // Default to new products
+
         $products = Product::query()
             ->when($this->search, function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%');
@@ -32,6 +34,7 @@ class ProductWebList extends Component
             ->when($this->category_id, function ($query) {
                 $query->where('category_id', $this->category_id);
             })
+            ->where('new', $productType)
             ->get();
 
         return view('livewire.product-web-list', [

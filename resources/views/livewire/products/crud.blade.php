@@ -44,6 +44,9 @@ new class extends Component {
     #[Rule('required|boolean')]
     public $featured = false;
 
+    #[Rule('required|boolean')]
+    public $new = true;
+
     public function mount($id = null): void
     {
         if ($id) {
@@ -101,12 +104,17 @@ new class extends Component {
                 <x-input label="Nombre" wire:model="name" />
                 <x-input label="Precio" wire:model="price" type="number" step="0.01" />
                 <x-input label="Cantidad en Stock" wire:model="stock_quantity" type="number" />
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <x-toggle label="Visible" wire:model="visible" />
                 <x-toggle label="Destacado" wire:model="featured" />
-
+                <x-toggle label="Nuevo" wire:model="new" />
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="col-span-2">
                     <x-file label="Imagen del Producto" wire:model="photo" accept="image/*">
-                        <img src="{{ $image ? asset('storage/' . $image) : asset('images/placeholder.jpg') }}" class="h-40 rounded-lg" />
+                        <img src="{{ $image ? asset('storage/' . $image) : asset('images/placeholder.jpg') }}"
+                            class="h-40 rounded-lg" />
                     </x-file>
                 </div>
 

@@ -22,8 +22,12 @@ class WebNavbar extends Component
             // ],
             [
                 'label' => 'LiuGong',
-                'url' => route('products.web'),
+                'url' => route('products.set_type', ['type' => 1]),
                 'logo_url' => 'images/SVG/Logo-LiuGong.svg'
+            ],
+            [
+                'label' => 'Usados',
+                'url' => route('products.set_type', ['type' => 0]),
             ],
             [
                 'label' => 'Contacto',
