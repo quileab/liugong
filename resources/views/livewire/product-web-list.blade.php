@@ -6,7 +6,12 @@
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @forelse($products as $product)
                 <a href="{{ route('product.detail', $product) }}" class="block">
-                    <x-web-card :title="$product->name" :image="$product->image">
+                    <x-web-card 
+                        :title="$product->name" 
+                        :image="$product->image" 
+                        :titleClass="!$product->featured ? 'text-black' : null"
+                        :contentClass="!$product->featured ? 'text-white bg-red-600' : null"
+                    >
                         {{ Str::limit($product->description, 100) }}
                     </x-web-card>
                 </a>

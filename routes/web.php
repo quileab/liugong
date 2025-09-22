@@ -39,7 +39,9 @@ Route::get('/vista', function () {
 });
 
 Route::get('/', function () {
-    return view('index');
+    $newFeatured = \App\Models\Product::whereNotNull('visible')->where('featured', true)->where('new', true)->get();
+    $usedFeatured = \App\Models\Product::whereNotNull('visible')->where('featured', true)->where('new', false)->get();
+    return view('index', compact('newFeatured', 'usedFeatured'));
 })->name('home');
 
 Route::get('/about', function () {

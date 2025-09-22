@@ -34,7 +34,33 @@
                 </div>
             </div>
         </main>
-        
+
+        <div class="container mx-auto px-4 py-8">
+            <h2 class="text-3xl font-bold text-center mb-8">Destacados Nuevos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($newFeatured as $product)
+                    <a href="{{ route('product.detail', $product) }}">
+                        <x-web-card title="{{ $product->name }}" image="{{ $product->image }}">
+                            {{ Str::limit($product->description, 100) }}
+                        </x-web-card>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 py-8">
+            <h2 class="text-3xl font-bold text-center mb-8">Destacados Usados</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($usedFeatured as $product)
+                    <a href="{{ route('product.detail', $product) }}">
+                        <x-web-card title="{{ $product->name }}" image="{{ $product->image }}" titleClass="text-black" contentClass="text-white bg-red-600">
+                            {{ Str::limit($product->description, 100) }}
+                        </x-web-card>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+
         <livewire:post-list />
     </div>
 
