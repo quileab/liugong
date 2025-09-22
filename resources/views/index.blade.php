@@ -26,8 +26,13 @@
                         <p class="animate__animated animate__fadeInRight animate__delay-2s">Nuestra actividad principal es la comercialización de maquinaria agrícola y vial, nueva y usada. Además, contamos con un servicio técnico oficial especializado en autoelevadores, garantizando el mantenimiento y la reparación de sus equipos con los más altos estándares.</p>
                         <p class="animate__animated animate__fadeInRight animate__delay-3s">En Acuña Maquinarias SRL, no solo vendemos máquinas, sino que construimos relaciones a largo plazo con nuestros clientes, basadas en la confianza, el asesoramiento profesional y un servicio postventa de excelencia. Nuestro objetivo es ser su socio estratégico, acompañándolo en el crecimiento de su negocio y ofreciéndole las mejores herramientas para optimizar su trabajo.</p>
                     </div>
+                    <div id="stacked-images-mobile" class="group md:hidden w-full relative h-96 flex items-center justify-center mt-8">
+                        <img src="{{ asset('images/liugong-local.jpg') }}" alt="Local de Acuña Maquinarias 1" class="clickable-image cursor-pointer absolute w-3/4 rounded-lg shadow-2xl transform -rotate-6 transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:-translate-x-10 group-hover:-rotate-15 group-hover:z-10 group-hover:[box-shadow:0_0_10px_rgba(0,0,0,0.6)] animate__animated animate__fadeInRight animate__delay-1s aspect-square object-cover">
+                        <img src="{{ asset('images/liugong-local1.jpg') }}" alt="Local de Acuña Maquinarias 2" class="clickable-image cursor-pointer absolute w-3/4 rounded-lg shadow-2xl transform rotate-3 translate-x-8 translate-y-8 transition-all duration-500 ease-in-out group-hover:scale-120 group-hover:rotate-5 group-hover:translate-x-4 group-hover:-translate-y-4 group-hover:z-20 group-hover:[box-shadow:0_0_10px_rgba(0,0,0,0.6)] animate__animated animate__fadeInRight animate__delay-2s aspect-square object-cover">
+                        <img src="{{ asset('images/liugong-local2.jpg') }}" alt="Local de Acuña Maquinarias 3" class="clickable-image cursor-pointer absolute w-2/3 rounded-lg shadow-2xl transform rotate-8 -translate-x-8 -translate-y-8 transition-all duration-500 ease-in-out group-hover:scale-115 group-hover:translate-x-10 group-hover:rotate-10 group-hover:z-10 group-hover:[box-shadow:0_0_10px_rgba(0,0,0,0.6)] animate__animated animate__fadeInRight animate__delay-3s aspect-square object-cover">
+                    </div>
                 </div>
-                <div id="stacked-images" class="group md:w-1/2 lg:w-2/5 relative h-96 flex items-center justify-center">
+                <div id="stacked-images" class="group hidden md:flex md:w-1/2 lg:w-2/5 relative h-96 items-center justify-center">
                     <img src="{{ asset('images/liugong-local.jpg') }}" alt="Local de Acuña Maquinarias 1" class="clickable-image cursor-pointer absolute w-3/4 rounded-lg shadow-2xl transform -rotate-6 transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:-translate-x-10 group-hover:-rotate-15 group-hover:z-10 group-hover:[box-shadow:0_0_10px_rgba(0,0,0,0.6)] animate__animated animate__fadeInRight animate__delay-1s aspect-square object-cover">
                     <img src="{{ asset('images/liugong-local1.jpg') }}" alt="Local de Acuña Maquinarias 2" class="clickable-image cursor-pointer absolute w-3/4 rounded-lg shadow-2xl transform rotate-3 translate-x-8 translate-y-8 transition-all duration-500 ease-in-out group-hover:scale-120 group-hover:rotate-5 group-hover:translate-x-4 group-hover:-translate-y-4 group-hover:z-20 group-hover:[box-shadow:0_0_10px_rgba(0,0,0,0.6)] animate__animated animate__fadeInRight animate__delay-2s aspect-square object-cover">
                     <img src="{{ asset('images/liugong-local2.jpg') }}" alt="Local de Acuña Maquinarias 3" class="clickable-image cursor-pointer absolute w-2/3 rounded-lg shadow-2xl transform rotate-8 -translate-x-8 -translate-y-8 transition-all duration-500 ease-in-out group-hover:scale-115 group-hover:translate-x-10 group-hover:rotate-10 group-hover:z-10 group-hover:[box-shadow:0_0_10px_rgba(0,0,0,0.6)] animate__animated animate__fadeInRight animate__delay-3s aspect-square object-cover">
@@ -37,28 +42,70 @@
 
         <div class="container mx-auto px-4 py-8">
             <h2 class="text-3xl font-bold text-center mb-8">Destacados Nuevos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($newFeatured as $product)
-                    <a href="{{ route('product.detail', $product) }}">
-                        <x-web-card title="{{ $product->name }}" image="{{ $product->image }}">
-                            {{ Str::limit($product->description, 100) }}
-                        </x-web-card>
-                    </a>
-                @endforeach
-            </div>
+            @if(count($newFeatured) > 3)
+                @php
+                    $newSlides = $newFeatured->chunk(3)->map(function ($chunk) {
+                        return ['products' => $chunk];
+                    });
+                @endphp
+                <x-carousel :slides="$newSlides->toArray()" class="h-auto py-8" autoplay arrows>
+                    @scope('slide', $slide)
+                        <div class="grid grid-cols-3 gap-8 px-16">
+                            @foreach($slide['products'] as $product)
+                                <a href="{{ route('product.detail', $product) }}">
+                                    <x-web-card title="{{ $product->name }}" image="{{ $product->image }}">
+                                        {{ Str::limit($product->description, 100) }}
+                                    </x-web-card>
+                                </a>
+                            @endforeach
+                        </div>
+                    @endscope
+                </x-carousel>
+            @else
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @foreach($newFeatured as $product)
+                        <a href="{{ route('product.detail', $product) }}">
+                            <x-web-card title="{{ $product->name }}" image="{{ $product->image }}">
+                                {{ Str::limit($product->description, 100) }}
+                            </x-web-card>
+                        </a>
+                    @endforeach
+                </div>
+            @endif
         </div>
 
         <div class="container mx-auto px-4 py-8">
             <h2 class="text-3xl font-bold text-center mb-8">Destacados Usados</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($usedFeatured as $product)
-                    <a href="{{ route('product.detail', $product) }}">
-                        <x-web-card title="{{ $product->name }}" image="{{ $product->image }}" titleClass="text-black" contentClass="text-white bg-red-600">
-                            {{ Str::limit($product->description, 100) }}
-                        </x-web-card>
-                    </a>
-                @endforeach
-            </div>
+            @if(count($usedFeatured) > 3)
+                @php
+                    $usedSlides = $usedFeatured->chunk(3)->map(function ($chunk) {
+                        return ['products' => $chunk];
+                    });
+                @endphp
+                <x-carousel :slides="$usedSlides->toArray()" class="h-auto py-8" autoplay arrows>
+                    @scope('slide', $slide)
+                        <div class="grid grid-cols-3 gap-8 px-16">
+                            @foreach($slide['products'] as $product)
+                                <a href="{{ route('product.detail', $product) }}">
+                                    <x-web-card title="{{ $product->name }}" image="{{ $product->image }}" :used="true" titleClass="text-black" contentClass="text-white bg-red-600">
+                                        {{ Str::limit($product->description, 100) }}
+                                    </x-web-card>
+                                </a>
+                            @endforeach
+                        </div>
+                    @endscope
+                </x-carousel>
+            @else
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @foreach($usedFeatured as $product)
+                        <a href="{{ route('product.detail', $product) }}">
+                            <x-web-card title="{{ $product->name }}" image="{{ $product->image }}" :used="true" titleClass="text-black" contentClass="text-white bg-red-600">
+                                {{ Str::limit($product->description, 100) }}
+                            </x-web-card>
+                        </a>
+                    @endforeach
+                </div>
+            @endif
         </div>
 
         <livewire:post-list />

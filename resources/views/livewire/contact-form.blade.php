@@ -7,7 +7,7 @@
         <x-textarea label="Mensaje" wire:model="message" />
 
         <x-slot:actions>
-            <x-button label="Enviar Mensaje" type="submit" class="btn-primary" />
+            <x-button label="Enviar Mensaje" type="submit" class="bg-blue-900 hover:bg-blue-700 text-white" />
         </x-slot:actions>
     </x-form>
 

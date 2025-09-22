@@ -9,8 +9,9 @@
                     <x-web-card 
                         :title="$product->name" 
                         :image="$product->image" 
-                        :titleClass="!$product->featured ? 'text-black' : null"
-                        :contentClass="!$product->featured ? 'text-white bg-red-600' : null"
+                        :used="!$product->new"
+                        :titleClass="!$product->new ? 'text-black' : null"
+                        :contentClass="!$product->new ? 'text-white bg-red-600' : null"
                     >
                         {{ Str::limit($product->description, 100) }}
                     </x-web-card>
