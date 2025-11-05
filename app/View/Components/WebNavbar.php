@@ -30,6 +30,10 @@ class WebNavbar extends Component
                 'url' => route('products.set_type', ['type' => 0]),
             ],
             [
+                'label' => 'Servicios',
+                'url' => '/servicios',
+            ],
+            [
                 'label' => 'Contacto',
                 'url' => '/contact',
             ]

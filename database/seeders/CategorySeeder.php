@@ -11,23 +11,23 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Category::create(['name' => 'Autoelevadores Nafta']);
-        \App\Models\Category::create(['name' => 'Autoelevadores Diesel']);
-        \App\Models\Category::create(['name' => 'Autoelevadores Gas']);
-        \App\Models\Category::create(['name' => 'Autoelevadores Eléctricos']);
-        \App\Models\Category::create(['name' => 'Compactadores']);
-        \App\Models\Category::create(['name' => 'Camión Minero']);
-        \App\Models\Category::create(['name' => 'Excavadoras']);
-        \App\Models\Category::create(['name' => 'Fresadora']);
-        \App\Models\Category::create(['name' => 'Pavimentadora']);
-        \App\Models\Category::create(['name' => 'Grúas sobre camión']);
-        \App\Models\Category::create(['name' => 'Minicargadoras']);
-        \App\Models\Category::create(['name' => 'Motoniveladoras']);
-        \App\Models\Category::create(['name' => 'Palas Cargadoras']);
-        \App\Models\Category::create(['name' => 'Plataformas de Elevación']);
-        \App\Models\Category::create(['name' => 'Pala y Retro']);
-        \App\Models\Category::create(['name' => 'Topadoras LiuGong']);
-        \App\Models\Category::create(['name' => 'Topadoras Dressta']);
-        \App\Models\Category::create(['name' => 'Zorras']);
+        \App\Models\Category::firstOrCreate(['name' => 'Autoelevadores Nafta']);
+        \App\Models\Category::firstOrCreate(['name' => 'Autoelevadores Diesel']);
+        \App\Models\Category::firstOrCreate(['name' => 'Autoelevadores Gas']);
+        \App\Models\Category::firstOrCreate(['name' => 'Autoelevadores Eléctricos']);
+        \App\Models\Category::firstOrCreate(['name' => 'Compactadores']);
+        \App\Models\Category::firstOrCreate(['name' => 'Camión Minero']);
+        \App\Models\Category::firstOrCreate(['name' => 'Excavadoras']);
+        \App\Models\Category::firstOrCreate(['name' => 'Fresadora']);
+        \App\Models\Category::firstOrCreate(['name' => 'Pavimentadora']);
+        \App\Models\Category::firstOrCreate(['name' => 'Grúas sobre camión']);
+        \App\Models\Category::firstOrCreate(['name' => 'Minicargadoras']);
+        \App\Models\Category::firstOrCreate(['name' => 'Motoniveladoras']);
+        \App\Models\Category::firstOrCreate(['name' => 'Palas Cargadoras']);
+        \App\Models\Category::firstOrCreate(['name' => 'Plataformas de Elevación']);
+        \App\Models\Category::firstOrCreate(['name' => 'Pala y Retro']);
+        \App\Models\Category::firstOrCreate(['name' => 'Topadoras LiuGong']);
+        \App\Models\Category::firstOrCreate(['name' => 'Topadoras Dressta']);
+        \App\Models\Category::firstOrCreate(['name' => 'Zorras']);
     }
 }

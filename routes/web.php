@@ -48,6 +48,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('/servicios', function () {
+    return view('servicios');
+});
+
 Route::get('/contact', function () {
     return view('contact');
 });

@@ -13,33 +13,41 @@ class CarouselSeeder extends Seeder
      */
     public function run(): void
     {
-        Carousel::create([
-            'image_path' => 'images/placeholder.jpg',
-            'title' => 'Frontend developers',
-            'description' => 'We love last week frameworks.',
-            'url' => '/docs/installation',
-            'url_text' => 'Get started',
-            'order' => 1,
-        ]);
+        Carousel::firstOrCreate(
+            ['title' => 'Frontend developers'],
+            [
+                'image_path' => 'images/placeholder.jpg',
+                'description' => 'We love last week frameworks.',
+                'url' => '/docs/installation',
+                'url_text' => 'Get started',
+                'order' => 1,
+            ]
+        );
 
-        Carousel::create([
-            'image_path' => 'images/placeholder.jpg',
-            'title' => 'Full stack developers',
-            'description' => 'Where burnout is just a fancy term for Tuesday.',
-            'order' => 2,
-        ]);
+        Carousel::firstOrCreate(
+            ['title' => 'Full stack developers'],
+            [
+                'image_path' => 'images/placeholder.jpg',
+                'description' => 'Where burnout is just a fancy term for Tuesday.',
+                'order' => 2,
+            ]
+        );
 
-        Carousel::create([
-            'image_path' => 'images/placeholder.jpg',
-            'url' => '/docs/installation',
-            'url_text' => 'Let`s go!',
-            'order' => 3,
-        ]);
+        Carousel::firstOrCreate(
+            ['order' => 3],
+            [
+                'image_path' => 'images/placeholder.jpg',
+                'url' => '/docs/installation',
+                'url_text' => 'Let`s go!',
+            ]
+        );
 
-        Carousel::create([
-            'image_path' => 'images/placeholder.jpg',
-            'url' => '/docs/installation',
-            'order' => 4,
-        ]);
+        Carousel::firstOrCreate(
+            ['order' => 4],
+            [
+                'image_path' => 'images/placeholder.jpg',
+                'url' => '/docs/installation',
+            ]
+        );
     }
 }
