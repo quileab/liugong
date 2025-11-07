@@ -61,8 +61,8 @@
                 <x-menu-item title="Contacts" icon="o-envelope" link="/contacts" />
 
                 <x-menu-sub title="Ajustes" icon="o-cog-6-tooth">
-                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />
-                    <x-menu-item title="Archivos" icon="o-archive-box" link="####" />
+                    <x-menu-item title="Usuarios" icon="o-users" link="{{ route('users.index') }}" />
+                    <x-menu-item title="Registrar Usuario" icon="o-user-plus" link="{{ route('users.create') }}" />
                 </x-menu-sub>
             </x-menu>
         </x-slot:sidebar>

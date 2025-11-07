@@ -1,12 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClearCacheController;
 
 //Volt::route('/', 'users.index');
 //Volt::route('/login', 'login')->name('login');
+
+Route::get('/clear/{option?}', ClearCacheController::class);
 
 Route::get('/logout', function (Request $request) {
     Auth::logout();
@@ -32,10 +35,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/carousel', \App\Livewire\CarouselManager::class)->name('carousel.manager');
     Route::get('/contacts', \App\Livewire\ContactManager::class)->name('contacts.manager');
+
+    // User CRUD routes
+    Volt::route('/users/create', 'user-form')->name('users.create');
+    Volt::route('/users/{user}/edit', 'user-form')->name('users.edit');
+    Volt::route('/users', 'user-list')->name('users.index');
 });
 // Ruta que retorna la vista "vista" sin controlador
 Route::get('/vista', function () {
-  return view('vista');
+    return view('vista');
 });
 
 Route::get('/', function () {
@@ -67,37 +75,3 @@ Route::get('/products-web', \App\Livewire\ProductWebList::class)->name('products
 
 Route::get('/product/{product}', \App\Livewire\ProductDetail::class)->name('product.detail');
 Route::get('/post/{post}', \App\Livewire\PostDetail::class)->name('post.detail');
-
-Route::get('/clear/{option?}', function ($option = null) {
-    $logs = [];
-    // if option is 'prod' then run composer install --optimize-autoloader --no-dev
-    if ($option == 'prod') {
-        $logs['Composer Install for PROD'] = Artisan::call('composer install --optimize-autoloader --no-dev');
-    }
-
-    $maintenance = ($option == "cache") ? [
-        'Flush' => 'cache:flush',
-    ] : [
-        //'DebugBar'=>'debugbar:clear',
-        'Storage Link' => 'storage:link',
-        'Config' => 'config:clear',
-        'Optimize Clear' => 'optimize:clear',
-        'Optimize' => 'optimize',
-        'Route Clear' => 'route:clear',
-        'Route Cache' => 'route:cache',
-        'View Clear' => 'view:clear',
-        'View Cache' => 'view:cache',
-        'Cache Clear' => 'cache:clear',
-        'Cache Config' => 'config:cache',
-    ];
-
-    foreach ($maintenance as $key => $value) {
-        try {
-            Artisan::call($value);
-            $logs[$key] = '✔️';
-        } catch (\Exception $e) {
-            $logs[$key] = '❌' . $e->getMessage();
-        }
-    }
-    return "<pre>" . print_r($logs, true) . "</pre><hr />";
-});
