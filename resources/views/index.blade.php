@@ -1,19 +1,6 @@
 <x-layouts.layout>
     <x-web-navbar />
-
-    {{-- carousel start --}}
-    @php
-        $slides = \App\Models\Carousel::orderBy('order')->get()->map(function ($slide) {
-            return [
-                'image' => $slide->image_path,
-                'title' => $slide->title,
-                'description' => $slide->description,
-                'url' => $slide->url,
-                'urlText' => $slide->url_text,
-            ];
-        })->toArray();
-    @endphp
-    <x-carousel :slides="$slides" autoplay class="h-[40vh] lg:h-[80vh]" />
+    <livewire:webslider />
 
     <div class="bg-gray-100 text-gray-900">
         <main class="container mx-auto px-4 py-8 z-1">
