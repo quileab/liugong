@@ -6,7 +6,7 @@
                 <h1 class="text-4xl font-bold text-primary mb-4">{{ $post->title }}</h1>
                 
                 @if($post->image_path)
-                    <img src="{{ Str::startsWith($post->image_path, 'http') ? $post->image_path : asset('storage/' . $post->image_path) }}" alt="{{ $post->title }}" class="w-full h-auto rounded-lg shadow-lg mb-6">
+                    <img src="{{ Str::startsWith($post->image_path, 'http') ? $post->image_path : asset('app-files/' . $post->image_path) }}" alt="{{ $post->title }}" class="w-full h-auto rounded-lg shadow-lg mb-6">
                 @endif
         
                 <div class="prose max-w-none text-lg text-gray-700">

@@ -77,7 +77,7 @@ new class extends Component {
 
                 <div class="col-span-2">
                     <x-file label="Imagen" wire:model="photo" accept="image/*">
-                        <img src="{{ $image_path ? (Str::startsWith($image_path, 'http') ? $image_path : asset('storage/' . $image_path)) : asset('images/placeholder.jpg') }}" class="h-40 rounded-lg" />
+                        <img src="{{ $image_path ? (Str::startsWith($image_path, 'http') ? $image_path : asset('app-files/' . $image_path)) : asset('images/placeholder.jpg') }}" class="h-40 rounded-lg" />
                     </x-file>
                 </div>
 

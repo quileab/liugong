@@ -7,7 +7,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                 @if(isset($product->image))
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}" class="w-full h-auto rounded-lg shadow-md">
+                    <img src="{{ asset('app-files/' . $product->image) }}" alt="{{ $product->title }}" class="w-full h-auto rounded-lg shadow-md">
                 @endif
                 </div>
                 <div>
