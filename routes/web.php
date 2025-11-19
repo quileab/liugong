@@ -75,3 +75,17 @@ Route::get('/products-web', \App\Livewire\ProductWebList::class)->name('products
 
 Route::get('/product/{product}', \App\Livewire\ProductDetail::class)->name('product.detail');
 Route::get('/post/{post}', \App\Livewire\PostDetail::class)->name('post.detail');
+
+Route::get('/create-storage-link', function () {
+    $targetFolder = storage_path('app/public');
+    $linkFolder = public_path('storage');
+    if (file_exists($linkFolder)) {
+        return 'The "public/storage" directory already exists.';
+    }
+    try {
+        symlink($targetFolder, $linkFolder);
+        return 'The [public/storage] directory has been linked.';
+    } catch (\Exception $e) {
+        return 'Error creating symlink: ' . $e->getMessage();
+    }
+});
