@@ -6,24 +6,23 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Mary\Traits\Toast;
 
 class CarouselManager extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, Toast;
 
     public $carousels = [];
     public $showModal = false;
     public $isEdit = false;
     public $slide_id;
-    public $image_path, $title, $description, $url, $url_text, $order, $image;
+    public $image_path, $title, $description, $url, $url_text, $image;
 
     private function getSlides()
     {
         if (Storage::disk('public')->exists('carousel/slides.json')) {
             $json = Storage::disk('public')->get('carousel/slides.json');
             $slides = json_decode($json, true);
-            // Sort by order
-            usort($slides, fn($a, $b) => $a['order'] <=> $b['order']);
             return $slides;
         }
         return [];
@@ -31,11 +30,6 @@ class CarouselManager extends Component
 
     private function saveSlides(array $slides)
     {
-        // Re-index order before saving
-        $slides = array_values($slides);
-        foreach ($slides as $index => &$slide) {
-            $slide['order'] = $index + 1;
-        }
         Storage::disk('public')->put('carousel/slides.json', json_encode($slides, JSON_PRETTY_PRINT));
     }
 
@@ -47,8 +41,7 @@ class CarouselManager extends Component
     public function create()
     {
         $this->isEdit = false;
-        $this->reset(['image_path', 'title', 'description', 'url', 'url_text', 'order', 'slide_id', 'image']);
-        $this->order = count($this->carousels) + 1;
+        $this->reset(['image_path', 'title', 'description', 'url', 'url_text', 'slide_id', 'image']);
         $this->showModal = true;
     }
 
@@ -62,7 +55,6 @@ class CarouselManager extends Component
             $this->description = $slide['description'];
             $this->url = $slide['url'];
             $this->url_text = $slide['url_text'];
-            $this->order = $slide['order'];
             $this->isEdit = true;
             $this->showModal = true;
             $this->image = null;
@@ -77,7 +69,6 @@ class CarouselManager extends Component
             'description' => $this->description,
             'url' => $this->url,
             'url_text' => $this->url_text,
-            'order' => (int) $this->order,
         ];
 
         if ($this->image) {
@@ -104,6 +95,7 @@ class CarouselManager extends Component
         $this->saveSlides($slides);
         $this->carousels = $this->getSlides();
         $this->showModal = false;
+        $this->success('Slide saved successfully.');
     }
 
     public function delete($id)
@@ -119,20 +111,22 @@ class CarouselManager extends Component
             array_splice($slides, $index, 1);
             $this->saveSlides($slides);
             $this->carousels = $this->getSlides();
+            $this->success('Slide deleted successfully.');
         }
     }
 
-    public function updateOrder($orderedIds)
+    public function updateOrder($orderedSlides)
     {
         $slides = $this->getSlides();
         $lookup = collect($slides)->keyBy('id');
         $newOrder = [];
-        foreach($orderedIds as $id) {
-            $newOrder[] = $lookup[$id];
+        foreach($orderedSlides as $slide) {
+            $newOrder[] = $lookup[$slide['value']];
         }
 
         $this->saveSlides($newOrder);
         $this->carousels = $this->getSlides();
+        $this->success('Slides reordered successfully.');
     }
 
 

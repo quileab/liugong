@@ -1,0 +1,7 @@
+I have made another attempt to fix the drag-and-drop functionality.
+
+I have explicitly marked the entire slide as the "handle" for dragging by adding the `wire:sortable.handle` directive. This should ensure that Livewire correctly identifies the draggable area.
+
+This change has been applied to `resources/views/livewire/carousel-manager.blade.php`.
+
+Please check if the drag-and-drop functionality is working now. If it's still not working, it's very likely that there is an issue with your local development environment that is preventing the necessary JavaScript from being loaded or executed correctly. Make sure that the `vite` development server is running and that your browser is loading the latest version of your site's assets.
