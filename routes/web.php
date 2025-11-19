@@ -75,7 +75,7 @@ Route::get('/products/type/{type}', function ($type) {
 Route::get('/products-web', \App\Livewire\ProductWebList::class)->name('products.web');
 
 
-Route::get('/storage/{file}', function ($file) {
+Route::get('/app-files/{file}', function ($file) {
     $path = storage_path('app/public/' . $file);
     if (!File::exists($path)) {
         abort(404);
@@ -85,7 +85,7 @@ Route::get('/storage/{file}', function ($file) {
     $response = Response::make($fileContents, 200);
     $response->header("Content-Type", $type);
     return $response;
-})->where('file', '.*')->name('storage.file');
+})->where('file', '.*')->name('app-files.file');
 
 Route::get('/product/{product}', \App\Livewire\ProductDetail::class)->name('product.detail');
 Route::get('/post/{post}', \App\Livewire\PostDetail::class)->name('post.detail');

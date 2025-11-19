@@ -9,7 +9,7 @@
             $slidesData = json_decode($json, true);
             $slides = collect($slidesData)->map(function ($slide) {
                 return [
-                    'image' => asset('storage/' . $slide['image_path']),
+                    'image' => asset('app-files/' . $slide['image_path']),
                     'title' => $slide['title'],
                     'description' => $slide['description'],
                     'url' => $slide['url'],
