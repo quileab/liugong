@@ -17,7 +17,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="mailto:info@liugong.com" class="flex items-center gap-2">
+                                <a href="mailto:emiliano@acunamaquinarias.com.ar" class="flex items-center gap-2">
                                     <x-icon name="o-envelope" />
                                     emiliano@acunamaquinarias.com.ar
                                 </a>
