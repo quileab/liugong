@@ -25,7 +25,7 @@
             @foreach($carousels as $slide)
             <div wire:key="{{ $slide['id'] }}" data-id="{{ $slide['id'] }}"
                     class="relative group bg-base-200 rounded-lg shadow-md overflow-hidden">
-                    <img src="{{ asset('storage/' . $slide['image_path']) }}" alt="{{ $slide['title'] }}" class="h-48 w-full object-cover">
+                    <img src="{{ asset('app-files/' . $slide['image_path']) }}" alt="{{ $slide['title'] }}" class="h-48 w-full object-cover">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <button class="handle cursor-grab text-white p-2 rounded-full mr-2">
@@ -54,7 +54,7 @@
             @if ($image)
                 <img src="{{ $image->temporaryUrl() }}" class="h-20 w-20 object-cover mt-2">
             @elseif ($image_path)
-                <img src="{{ asset('storage/' . $image_path) }}" class="h-20 w-20 object-cover mt-2">
+                <img src="{{ asset('app-files/' . $image_path) }}" class="h-20 w-20 object-cover mt-2">
             @endif
             <x-input label="Title" wire:model="title" />
             <x-textarea label="Description" wire:model="description" />
